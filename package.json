@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "khrtz <garula.oze498@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "publish:dev": "gh-pages -d static"
+  },
   "devDependencies": {
     "gh-pages": "^2.0.1"
   }
