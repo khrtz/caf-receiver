@@ -1,83 +1,136 @@
-/*
-Copyright 2019 Google LLC. All Rights Reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-/*
-This sample demonstrates how to build your own Receiver for use with Google
-Cast.
-*/
-
-'use strict';
-
-import { CastQueue } from './queuing.js';
-
 const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
 
-// Listen and log all Core Events.
-playerManager.addEventListener(cast.framework.events.category.CORE,
-  event => {
-    console.log("Core event: " + event.type);
-    console.log(event);
+function makeRequest (method, url) {
+  return new Promise(function (resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.onload = function () {
+      if (this.status >= 200 && this.status < 300) {
+        resolve(JSON.parse(xhr.response));
+      } else {
+        reject({
+          status: this.status,
+          statusText: xhr.statusText
+        });
+      }
+    };
+    xhr.onerror = function () {
+      reject({
+        status: this.status,
+        statusText: xhr.statusText
+      });
+    };
+    xhr.send();
   });
+}
+
+playerManager.setMessageInterceptor(
+    cast.framework.messages.MessageType.LOAD,
+    request => {
+      castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
+
+      if (request.media && request.media.entity) {
+        request.media.contentId = request.media.entity;
+      }
+
+      return new Promise((resolve, reject) => {
+
+        if(request.media.contentType == 'video/mp4') {
+          return resolve(request);
+        }
+
+        // Fetch content repository by requested contentId
+        makeRequest('GET', 'https://tse-summit.firebaseio.com/content.json?orderBy=%22$key%22&equalTo=%22'+ request.media.contentId + '%22')
+          .then(function (data) {
+	          var item = data[request.media.contentId];
+	          if(!item) {
+	            // Content could not be found in repository
+              castDebugLogger.error('MyAPP.LOG', 'Content not found');
+	            reject();
+	          } else {
+	            // Adjusting request to make requested content playable
+	            request.media.contentId = item.stream.hls;
+	            request.media.contentType = 'application/x-mpegurl';
+              castDebugLogger.warn('MyAPP.LOG', 'Playable URL: ' + request.media.contentId);
+
+	            // Add metadata
+	            var metadata = new cast.framework.messages.MovieMediaMetadata();
+	            metadata.metadataType = cast.framework.messages.MetadataType.MOVIE;
+	            metadata.title = item.title;
+	            metadata.subtitle = item.author;
+
+              request.media.metadata = metadata;
+	            resolve(request);
+	          }
+        });
+      });
+    });
+
+/** Debug Logger **/
+const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
+
+// Enable debug logger and show a warning on receiver
+// NOTE: make sure it is disabled on production
+castDebugLogger.setEnabled(true);
+castDebugLogger.showDebugLogs(true);
 
 playerManager.addEventListener(
-  cast.framework.events.EventType.MEDIA_STATUS, (event) => {
-    console.log("MEDIA_STATUS event: " + event.type);
-    console.log(event);
+  cast.framework.events.category.CORE,
+  event => {
+      castDebugLogger.info('EVENT.CORE', event);
 });
 
-// Intercept the LOAD request to be able to read in a contentId and get data.
-playerManager.setMessageInterceptor(
-  cast.framework.messages.MessageType.LOAD, loadRequestData => {
-    return loadRequestData;
+// Set verbosity level for custom tags
+castDebugLogger.loggerLevelByTags = {
+    'EVENT.CORE': cast.framework.LoggerLevel.DEBUG,
+    'MyAPP.LOG': cast.framework.LoggerLevel.WARNING
+};
+
+/** Optimizing for smart displays **/
+const playerData = new cast.framework.ui.PlayerData();
+const playerDataBinder = new cast.framework.ui.PlayerDataBinder(playerData);
+const touchControls = cast.framework.ui.Controls.getInstance();
+
+let browseItems = getBrwoseItems();
+
+function getBrwoseItems() {
+  let browseItems = [];
+  makeRequest('GET', 'https://tse-summit.firebaseio.com/content.json')
+  .then(function (data) {
+    for (let key in data) {
+      let item = new cast.framework.ui.BrowseItem();
+      item.entity = key;
+      item.title = data[key].title;
+      item.subtitle = data[key].description;
+      item.image = new cast.framework.messages.Image(data[key].poster);
+      item.imageType = cast.framework.ui.BrowseImageType.MOVIE;
+      browseItems.push(item);
+    }
+  });
+  return browseItems;
+}
+
+let browseContent = new cast.framework.ui.BrowseContent();
+browseContent.title = 'Up Next';
+browseContent.items = browseItems;
+browseContent.targetAspectRatio =
+  cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
+
+playerDataBinder.addEventListener(
+  cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
+  (e) => {
+    if (!e.value) return;
+
+    // Clear default buttons and re-assign
+    touchControls.clearDefaultSlotAssignments();
+    touchControls.assignButton(
+      cast.framework.ui.ControlsSlot.SLOT_1,
+      cast.framework.ui.ControlsButton.SEEK_BACKWARD_30
+    );
+
+    // Media browse
+    touchControls.setBrowseContent(browseContent);
   });
 
-const playbackConfig = new cast.framework.PlaybackConfig();
-
-// Set the player to start playback as soon as there are five seconds of
-// media content buffered. Default is 10.
-playbackConfig.autoResumeDuration = 5;
-
-// Set the available buttons in the UI controls.
-const controls = cast.framework.ui.Controls.getInstance();
-controls.clearDefaultSlotAssignments();
-
-// Assign buttons to control slots.
-controls.assignButton(
-  cast.framework.ui.ControlsSlot.SLOT_1,
-  cast.framework.ui.ControlsButton.QUEUE_PREV
-)
-controls.assignButton(
-  cast.framework.ui.ControlsSlot.SLOT_2,
-  cast.framework.ui.ControlsButton.CAPTIONS
-)
-controls.assignButton(
-  cast.framework.ui.ControlsSlot.SLOT_3,
-  cast.framework.ui.ControlsButton.SEEK_FORWARD_15
-)
-controls.assignButton(
-  cast.framework.ui.ControlsSlot.SLOT_4,
-  cast.framework.ui.ControlsButton.QUEUE_NEXT
-)
-
-context.start({
-  queue: new CastQueue(),
-  playbackConfig: playbackConfig,
-  supportedCommands: cast.framework.messages.Command.ALL_BASIC_MEDIA |
-                      cast.framework.messages.Command.QUEUE_PREV |
-                      cast.framework.messages.Command.QUEUE_NEXT
-});
-
-
+context.start({ touchScreenOptimizedApp: true });
