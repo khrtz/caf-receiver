@@ -74,7 +74,6 @@ const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
 // NOTE: make sure it is disabled on production
 castDebugLogger.setEnabled(true);
 castDebugLogger.showDebugLogs(true);
-cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED;
 
 playerManager.addEventListener(
   cast.framework.events.category.CORE,
@@ -117,6 +116,8 @@ browseContent.title = 'Up Next';
 browseContent.items = browseItems;
 browseContent.targetAspectRatio =
   cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
+
+touchControls.setBrowseContent(browseContent);
 
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
