@@ -73,7 +73,7 @@ const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
 // Enable debug logger and show a warning on receiver
 // NOTE: make sure it is disabled on production
 castDebugLogger.setEnabled(true);
-castDebugLogger.showDebugLogs(false);
+castDebugLogger.showDebugLogs(true);
 
 playerManager.addEventListener(
   cast.framework.events.category.CORE,
@@ -118,6 +118,16 @@ browseContent.targetAspectRatio =
   cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
 
 console.log('logaa', browseContent)
+
+    // Clear default buttons and re-assign
+    touchControls.clearDefaultSlotAssignments();
+    touchControls.assignButton(
+      cast.framework.ui.ControlsSlot.SLOT_1,
+      cast.framework.ui.ControlsButton.SEEK_BACKWARD_30
+    );
+
+    // Media browse
+    touchControls.setBrowseContent(browseContent);
 
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
