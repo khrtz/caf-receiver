@@ -136,4 +136,3 @@ playerDataBinder.addEventListener(
   });
 
 context.start({ touchScreenOptimizedApp: true });
-z
