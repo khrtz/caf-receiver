@@ -117,7 +117,7 @@ browseContent.items = browseItems;
 browseContent.targetAspectRatio =
   cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
 
-touchControls.setBrowseContent(browseContent);
+console.log('logaa', browseContent)
 
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
@@ -136,3 +136,4 @@ playerDataBinder.addEventListener(
   });
 
 context.start({ touchScreenOptimizedApp: true });
+z
