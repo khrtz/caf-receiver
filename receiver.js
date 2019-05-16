@@ -84,7 +84,8 @@ playerManager.addEventListener(
 // Set verbosity level for custom tags
 castDebugLogger.loggerLevelByTags = {
     'EVENT.CORE': cast.framework.LoggerLevel.DEBUG,
-    'MyAPP.LOG': cast.framework.LoggerLevel.WARNING
+    'MyAPP.LOG': cast.framework.LoggerLevel.WARNING,
+    "DEV.LOG": cast.framework.LoggerLevel.INFO
 };
 
 /** Optimizing for smart displays **/
@@ -117,7 +118,7 @@ browseContent.items = browseItems;
 browseContent.targetAspectRatio =
   cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
 
-castDebugLogger.info('EVENT.CORE', 'brose content' + browseContent);
+castDebugLogger.info('DEV.LOG', 'browse content' + browseContent);
 
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
