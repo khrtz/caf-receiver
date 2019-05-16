@@ -28,7 +28,7 @@ function makeRequest (method, url) {
 playerManager.setMessageInterceptor(
     cast.framework.messages.MessageType.LOAD,
     request => {
-      // castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
+      castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
 
       if (request.media && request.media.entity) {
         request.media.contentId = request.media.entity;
@@ -46,13 +46,13 @@ playerManager.setMessageInterceptor(
 	          var item = data[request.media.contentId];
 	          if(!item) {
 	            // Content could not be found in repository
-              // castDebugLogger.error('MyAPP.LOG', 'Content not found');
+              castDebugLogger.error('MyAPP.LOG', 'Content not found');
 	            reject();
 	          } else {
 	            // Adjusting request to make requested content playable
 	            request.media.contentId = item.stream.hls;
 	            request.media.contentType = 'application/x-mpegurl';
-              // castDebugLogger.warn('MyAPP.LOG', 'Playable URL: ' + request.media.contentId);
+              castDebugLogger.warn('MyAPP.LOG', 'Playable URL: ' + request.media.contentId);
 
 	            // Add metadata
 	            var metadata = new cast.framework.messages.MovieMediaMetadata();
@@ -117,7 +117,7 @@ browseContent.items = browseItems;
 browseContent.targetAspectRatio =
   cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
 
-castDebugLogger.info('browse content', browseContent);
+castDebugLogger.info('EVENT.CORE', browseContent);
 
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
