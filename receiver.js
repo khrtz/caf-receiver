@@ -117,17 +117,7 @@ browseContent.items = browseItems;
 browseContent.targetAspectRatio =
   cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
 
-console.log('logaa', browseContent)
-
-    // Clear default buttons and re-assign
-    touchControls.clearDefaultSlotAssignments();
-    touchControls.assignButton(
-      cast.framework.ui.ControlsSlot.SLOT_1,
-      cast.framework.ui.ControlsButton.SEEK_BACKWARD_30
-    );
-
-    // Media browse
-    touchControls.setBrowseContent(browseContent);
+castDebugLogger.info('browse content', browseContent);
 
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
