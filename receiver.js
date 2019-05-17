@@ -83,8 +83,8 @@ playerManager.addEventListener(
 
 // Set verbosity level for custom tags
 castDebugLogger.loggerLevelByTags = {
-    'EVENT.CORE': cast.framework.LoggerLevel.DEBUG,
-    'MyAPP.LOG': cast.framework.LoggerLevel.WARNING,
+    // 'EVENT.CORE': cast.framework.LoggerLevel.DEBUG,
+    // 'MyAPP.LOG': cast.framework.LoggerLevel.WARNING,
     "DEV.LOG": cast.framework.LoggerLevel.INFO
 };
 
