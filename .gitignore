@@ -5,7 +5,6 @@ Thumbs.db
 
 # generated
 node_modules
-build/
 coverage/
 *.map
 
