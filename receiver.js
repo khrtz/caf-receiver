@@ -123,8 +123,6 @@ browseContent.items = browseItems;
 browseContent.targetAspectRatio =
   cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
 
-castDebugLogger.info('DEV.LOG', 'browse content', browseContent.title);
-
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
   (e) => {
