@@ -28,7 +28,7 @@ function makeRequest (method, url) {
 playerManager.setMessageInterceptor(
     cast.framework.messages.MessageType.LOAD,
     request => {
-      castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
+      // castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
       
       request.media.streamType = cast.framework.messages.StreamType.LIVE;
 
@@ -82,7 +82,7 @@ castDebugLogger.showDebugLogs(true);
 playerManager.addEventListener(
   cast.framework.events.category.CORE,
   event => {
-      castDebugLogger.info('EVENT.CORE', event);
+      // castDebugLogger.info('EVENT.CORE', event);
 });
 
 // Set verbosity level for custom tags
@@ -98,7 +98,7 @@ const playerDataBinder = new cast.framework.ui.PlayerDataBinder(playerData);
 const touchControls = cast.framework.ui.Controls.getInstance();
 
 let browseItems = getBrwoseItems();
-castDebugLogger.error('MyAPP.LOG', 'uiiiii' + cast);
+castDebugLogger.error('MyAPP.LOG', 'uiiiii' + cast.framework.ui.streamType);
 
 function getBrwoseItems() {
   let browseItems = [];
@@ -123,7 +123,7 @@ browseContent.items = browseItems;
 browseContent.targetAspectRatio =
   cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
 
-castDebugLogger.info('DEV.LOG', 'browse content' + browseContent);
+castDebugLogger.info('DEV.LOG', 'browse content' + browseContent.title);
 
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
