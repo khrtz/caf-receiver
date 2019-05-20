@@ -1,22 +1,6 @@
 const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
-// シークを消す
 // playerManager.removeSupportedMediaCommands(cast.framework.messages.Command.SEEK, true);
-const currentShow = new cast.framework.messages.TvShowMediaMetadata();
-currentShow.episode = 15;
-currentShow.seriesTitle = 'The Odyssey';
-currentShow.title = 'Scylla and Charybdis';
-currentShow.sectionStartAbsoluteTime = toUnixTimestamp('9:00 PM');
-currentShow.sectionDuration = HOUR_IN_SECONDS;
-
-const previousShow = new ...;
-const nextShow = new ...;
-
-const containerMetadata = new cast.framework.messages.ContainerMetadata();
-containerMetadata.title = 'My TV Channel';
-containerMetadata.sections = [previousShow, currentShow, nextShow];
-
-playerManager.getQueueManager().setContainerMetadata(containerMetadata);
 
 function makeRequest (method, url) {
   return new Promise(function (resolve, reject) {
