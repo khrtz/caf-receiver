@@ -1,5 +1,7 @@
 const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
+const playerData = {};
+const playerDataBinder = new cast.framework.ui.PlayerDataBinder(playerData);
 
 function makeRequest (method, url) {
   return new Promise(function (resolve, reject) {
@@ -122,7 +124,7 @@ browseContent.items = browseItems;
 browseContent.targetAspectRatio =
   cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
 
-castDebugLogger.info('DEV.LOG', 'browse content' + browseContent.title);
+castDebugLogger.info('DEV.LOG', 'browse content', browseContent.title);
 
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
