@@ -130,7 +130,7 @@ playerDataBinder.addEventListener(
   (e) => {
     if (!e.value) return;
 
-    castDebugLogger.info('DEV.LOG', 'event' + e);
+    castDebugLogger.info('DEV.LOG', 'event' + e.value);
 
     // Clear default buttons and re-assign
     touchControls.clearDefaultSlotAssignments();
