@@ -29,6 +29,8 @@ playerManager.setMessageInterceptor(
     cast.framework.messages.MessageType.LOAD,
     request => {
       castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
+      
+      request.media.streamType = cast.framework.messages.StreamType.LIVE;
 
       if (request.media && request.media.entity) {
         request.media.contentId = request.media.entity;
@@ -94,14 +96,14 @@ const playerDataBinder = new cast.framework.ui.PlayerDataBinder(playerData);
 const touchControls = cast.framework.ui.Controls.getInstance();
 
 let browseItems = getBrwoseItems();
-// castDebugLogger.error('MyAPP.LOG', 'BrowseItem' + cast.framework.ui);
+castDebugLogger.error('MyAPP.LOG', 'ui' + cast.framework.ui.BrowseItem());
 
 function getBrwoseItems() {
   let browseItems = [];
   makeRequest('GET', 'https://tse-summit.firebaseio.com/content.json')
   .then(function (data) {
     for (let key in data) {
-      let item = ;
+      let item = new cast.framework.ui.BrowseItem();
       item.entity = key;
       item.title = data[key].title;
       item.subtitle = data[key].description;
