@@ -80,22 +80,6 @@ const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
 castDebugLogger.setEnabled(true);
 castDebugLogger.showDebugLogs(true);
   
-// The metadata for a single TV show
-const currentShow = new cast.framework.messages.TvShowMediaMetadata();
-currentShow.episode = 15;
-currentShow.seriesTitle = 'The Odyssey';
-currentShow.title = 'Scylla and Charybdis';
-currentShow.sectionStartAbsoluteTime = toUnixTimestamp('9:00 PM');
-currentShow.sectionDuration = HOUR_IN_SECONDS;
-
-const containerMetadata = new cast.framework.messages.ContainerMetadata();
-containerMetadata.title = 'My TV Channel';
-containerMetadata.sections = [currentShow];
-
-// playerManager.setContainerMetadata(containerMetadata);
-
-castDebugLogger.info('DEV.LOG', 'conatiner m', containerMetadata);
-
 playerManager.addEventListener(
   cast.framework.events.category.CORE,
   event => {
