@@ -96,13 +96,14 @@ const playerDataBinder = new cast.framework.ui.PlayerDataBinder(playerData);
 const touchControls = cast.framework.ui.Controls.getInstance();
 
 let browseItems = getBrwoseItems();
+castDebugLogger.error('MyAPP.LOG', 'BrowseItem' + cast.framework.ui.BrowseItem());
 
 function getBrwoseItems() {
   let browseItems = [];
   makeRequest('GET', 'https://tse-summit.firebaseio.com/content.json')
   .then(function (data) {
     for (let key in data) {
-      let item = new cast.framework.ui.BrowseItem();
+      let item = ;
       item.entity = key;
       item.title = data[key].title;
       item.subtitle = data[key].description;
