@@ -33,7 +33,7 @@ playerManager.setMessageInterceptor(
     request => {
       // castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
       
-      request.media.streamType = cast.framework.messages.StreamType.LIVE;
+      // request.media.streamType = cast.framework.messages.StreamType.LIVE;
 
       if (request.media && request.media.entity) {
         request.media.contentId = request.media.entity;
@@ -81,7 +81,7 @@ castDebugLogger.setEnabled(true);
 castDebugLogger.showDebugLogs(true);
   
 playerManager.addEventListener(
-  cast.framework.events.category.CORE,
+  cast.framework.events.category.COR E,
   event => {
       // castDebugLogger.info('EVENT.CORE', event);
 });
@@ -93,6 +93,8 @@ currentShow.title = 'Scylla and Charybdis';
 const containerMetadata = new cast.framework.messages.ContainerMetadata();
 containerMetadata.title = 'My TV Channel';
 containerMetadata.sections = [currentShow, currentShow, currentShow];
+
+playerManager.getQueueManager().setContainerMetadata(containerMetadata);
 
 // Set verbosity level for custom tags
 castDebugLogger.loggerLevelByTags = {
