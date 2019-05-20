@@ -94,8 +94,6 @@ const containerMetadata = new cast.framework.messages.ContainerMetadata();
 containerMetadata.title = 'My TV Channel';
 containerMetadata.sections = [currentShow, currentShow, currentShow];
 
-playerManager.getQueueManager().setContainerMetadata(containerMetadata);
-
 // Set verbosity level for custom tags
 castDebugLogger.loggerLevelByTags = {
     'EVENT.CORE': cast.framework.LoggerLevel.DEBUG,
