@@ -1,5 +1,5 @@
 const context = cast.framework.CastReceiverContext.getInstance();
-const playerManager = context.getPlayerManager();
+// const playerManager = context.getPlayerManager();
 const playerData = {};
 const playerDataBinder = new cast.framework.ui.PlayerDataBinder(playerData);
 
