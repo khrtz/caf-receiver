@@ -138,7 +138,7 @@ playerDataBinder.addEventListener(
 
     // Media browse
     touchControls.setBrowseContent(browseContent);
-    castDebugLogger.info('DEV.LOG', 'browseContent', new cast.framework.ui.BrowseContent());
+    castDebugLogger.info('DEV.LOG', 'browseContent', new cast.framework.ui.fff());
   });
 
 context.start({ touchScreenOptimizedApp: true });
