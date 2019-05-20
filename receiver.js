@@ -123,7 +123,6 @@ browseContent.targetAspectRatio =
   cast.framework.ui.BrowseImageAspectRatio.LANDSCAPE_16_TO_9;
 
 castDebugLogger.info('DEV.LOG', 'browse content' + browseContent.title);
-touchControls.setBrowseContent(browseContent);
 
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,

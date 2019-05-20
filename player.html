@@ -7,7 +7,18 @@
   <title>test receiver</title>
 </head>
 <body>
-    <cast-media-player></cast-media-player>
+    <!-- <cast-media-player></cast-media-player> -->
+    <div class="video-player">
+      <p id="title-media"><strong>title</strong></p>
+      <p id="currentTime">00:00:00</p>
+      <p id="durationTime">00:00:00</p>
+      <div id="progress"></div>
+      <img id="watermark" src="res/transparentlogo.png">
+      <img id="buffer-Image" src="res/buffer.gif">
+      <img id="loading-Image" src="res/FSN_Live_Stream_Start.jpg">
+      <img id="pause-Button" src="res/pause-button-png-29671.png" height="200px" width="200px">
+      <video class="castMediaElement"></video>
+  </div>
     <script src="https://www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
     <!-- Cast Debug Logger -->
     <script src="https://www.gstatic.com/eureka/cast_codelabs/debug_layer/caf_receiver_logger.js"></script>
