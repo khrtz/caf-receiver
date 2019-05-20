@@ -1,7 +1,5 @@
 const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
-const playerData = {};
-const playerDataBinder = new cast.framework.ui.PlayerDataBinder(playerData);
 
 function makeRequest (method, url) {
   return new Promise(function (resolve, reject) {
