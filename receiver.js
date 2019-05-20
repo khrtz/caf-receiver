@@ -88,16 +88,13 @@ currentShow.title = 'Scylla and Charybdis';
 currentShow.sectionStartAbsoluteTime = toUnixTimestamp('9:00 PM');
 currentShow.sectionDuration = HOUR_IN_SECONDS;
 
-const previousShow = new ...;
-const nextShow = new ...;
-
 const containerMetadata = new cast.framework.messages.ContainerMetadata();
 containerMetadata.title = 'My TV Channel';
-containerMetadata.sections = [previousShow, currentShow, nextShow];
+containerMetadata.sections = [currentShow];
 
-playerManager.setContainerMetadata(containerMetadata);
+// playerManager.setContainerMetadata(containerMetadata);
 
-castDebugLogger.info('DEV.LOG', 'conatiner meta', containerMetadata);
+castDebugLogger.info('DEV.LOG', 'conatiner m', containerMetadata);
 
 playerManager.addEventListener(
   cast.framework.events.category.CORE,
