@@ -125,6 +125,7 @@ browseContent.targetAspectRatio =
 
 castDebugLogger.info('DEV.LOG', 'browse content' + browseContent.title);
 touchControls.setBrowseContent(browseContent);
+() => setTimeout(touchControls.setBrowseContent(browseContent), 100)
 
 playerDataBinder.addEventListener(
   cast.framework.ui.PlayerDataEventType.MEDIA_CHANGED,
