@@ -95,7 +95,7 @@ const containerMetadata = new cast.framework.messages.ContainerMetadata();
 containerMetadata.title = 'My TV Channel';
 containerMetadata.sections = [previousShow, currentShow, nextShow];
 
-playerManager.getQueueManager().setContainerMetadata(containerMetadata);
+playerManager.setContainerMetadata(containerMetadata);
 
 castDebugLogger.info('DEV.LOG', 'conatiner meta', containerMetadata);
 
