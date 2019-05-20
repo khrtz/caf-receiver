@@ -130,8 +130,6 @@ playerDataBinder.addEventListener(
   (e) => {
     if (!e.value) return;
 
-    castDebugLogger.info('DEV.LOG', 'event' + e.value);
-
     // Clear default buttons and re-assign
     touchControls.clearDefaultSlotAssignments();
     touchControls.assignButton(
@@ -141,6 +139,7 @@ playerDataBinder.addEventListener(
 
     // Media browse
     touchControls.setBrowseContent(browseContent);
+    castDebugLogger.info('DEV.LOG', 'touchControls' + touchControls);
   });
 
 context.start({ touchScreenOptimizedApp: true });
