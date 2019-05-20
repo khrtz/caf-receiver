@@ -1,7 +1,6 @@
 const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
 
-
 function makeRequest (method, url) {
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
@@ -140,7 +139,7 @@ playerDataBinder.addEventListener(
 
     // Media browse
     touchControls.setBrowseContent(browseContent);
-    castDebugLogger.info('DEV.LOG', 'touchControls' + touchControls.map(v) => v);
+    castDebugLogger.info('DEV.LOG', 'touchControls' + touchControls.subtitle);
   });
 
 context.start({ touchScreenOptimizedApp: true });
