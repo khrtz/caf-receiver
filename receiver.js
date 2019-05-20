@@ -1,5 +1,6 @@
 const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
+playerManager.removeSupportedMediaCommands(cast.framework.messages.Command.SEEK, true);
 
 function makeRequest (method, url) {
   return new Promise(function (resolve, reject) {
