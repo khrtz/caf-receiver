@@ -1,8 +1,8 @@
 const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
 // playerManager.removeSupportedMediaCommands(cast.framework.messages.Command.SEEK, true);
-const currentShow = new cast.framework.messages.TvShowMediaMetadata();
-castDebugLogger.info('MyAPP.LOG', 'current show', currentShow);
+// const currentShow = new cast.framework.messages.TvShowMediaMetadata();
+// castDebugLogger.info('MyAPP.LOG', 'current show', currentShow);
 
 
 function makeRequest (method, url) {
