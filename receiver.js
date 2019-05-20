@@ -2,7 +2,6 @@ const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
 // playerManager.removeSupportedMediaCommands(cast.framework.messages.Command.SEEK, true);
 // const currentShow = new cast.framework.messages.TvShowMediaMetadata();
-// castDebugLogger.info('MyAPP.LOG', 'current show', currentShow);
 
 
 function makeRequest (method, url) {
@@ -75,6 +74,8 @@ playerManager.setMessageInterceptor(
 
 /** Debug Logger **/
 const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
+
+castDebugLogger.info('MyAPP.LOG', 'current show', new cast.framework.messages.TvShowMediaMetadata());
 
 // Enable debug logger and show a warning on receiver
 // NOTE: make sure it is disabled on production
