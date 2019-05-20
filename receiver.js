@@ -1,5 +1,7 @@
 const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
+const playerData = {};
+const playerDataBinder = new cast.framework.ui.PlayerDataBinder(playerData);
 
 function makeRequest (method, url) {
   return new Promise(function (resolve, reject) {
@@ -25,7 +27,7 @@ function makeRequest (method, url) {
   });
 }
 
-playerManager.setMessageInterceptor(
+playerDataBinder.setMessageInterceptor(
     cast.framework.messages.MessageType.LOAD,
     request => {
       // castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
@@ -79,7 +81,7 @@ const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
 castDebugLogger.setEnabled(true);
 castDebugLogger.showDebugLogs(true);
 
-playerManager.addEventListener(
+playerDataBinder.addEventListener(
   cast.framework.events.category.CORE,
   event => {
       // castDebugLogger.info('EVENT.CORE', event);
