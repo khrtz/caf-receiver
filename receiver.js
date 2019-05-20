@@ -75,12 +75,11 @@ playerManager.setMessageInterceptor(
 /** Debug Logger **/
 const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
 
-castDebugLogger.info('DEV.LOG', 'current show', new cast.framework.messages.TvShowMediaMetadata());
-
 // Enable debug logger and show a warning on receiver
 // NOTE: make sure it is disabled on production
 castDebugLogger.setEnabled(true);
 castDebugLogger.showDebugLogs(true);
+castDebugLogger.info('DEV.LOG', 'current show', new cast.framework.messages.TvShowMediaMetadata());
 
 playerManager.addEventListener(
   cast.framework.events.category.CORE,
