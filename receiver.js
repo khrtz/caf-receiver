@@ -90,6 +90,11 @@ const currentShow = new cast.framework.messages.TvShowMediaMetadata();
 currentShow.episode = 15;
 currentShow.seriesTitle = 'The Odyssey';
 currentShow.title = 'Scylla and Charybdis';
+const containerMetadata = new cast.framework.messages.ContainerMetadata();
+containerMetadata.title = 'My TV Channel';
+containerMetadata.sections = [currentShow, currentShow, currentShow];
+
+playerManager.getQueueManager().setContainerMetadata(containerMetadata);
 
 // Set verbosity level for custom tags
 castDebugLogger.loggerLevelByTags = {
