@@ -96,7 +96,7 @@ const playerDataBinder = new cast.framework.ui.PlayerDataBinder(playerData);
 const touchControls = cast.framework.ui.Controls.getInstance();
 
 let browseItems = getBrwoseItems();
-castDebugLogger.error('MyAPP.LOG', 'BrowseItem' + cast.framework.ui);
+// castDebugLogger.error('MyAPP.LOG', 'BrowseItem' + cast.framework.ui);
 
 function getBrwoseItems() {
   let browseItems = [];
