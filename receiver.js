@@ -42,6 +42,8 @@ playerManager.setMessageInterceptor(
           return resolve(request);
         }
 
+        castDebugLogger.info('MyAPP.LOG', 'streamType' + request.media.streamType);
+
         // Fetch content repository by requested contentId
         makeRequest('GET', 'https://tse-summit.firebaseio.com/content.json?orderBy=%22$key%22&equalTo=%22'+ request.media.contentId + '%22')
           .then(function (data) {
@@ -96,7 +98,7 @@ const playerDataBinder = new cast.framework.ui.PlayerDataBinder(playerData);
 const touchControls = cast.framework.ui.Controls.getInstance();
 
 let browseItems = getBrwoseItems();
-castDebugLogger.error('MyAPP.LOG', 'ui' + cast.framework.ui);
+castDebugLogger.error('MyAPP.LOG', 'uiiiii' + cast);
 
 function getBrwoseItems() {
   let browseItems = [];
