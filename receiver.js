@@ -1,6 +1,9 @@
 const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
 // playerManager.removeSupportedMediaCommands(cast.framework.messages.Command.SEEK, true);
+const currentShow = new cast.framework.messages.TvShowMediaMetadata();
+castDebugLogger.info('MyAPP.LOG', 'current show', currentShow);
+
 
 function makeRequest (method, url) {
   return new Promise(function (resolve, reject) {
@@ -42,8 +45,6 @@ playerManager.setMessageInterceptor(
         if(request.media.contentType == 'video/mp4') {
           return resolve(request);
         }
-
-        castDebugLogger.info('MyAPP.LOG', 'streamType' + request.media.streamType);
 
         // Fetch content repository by requested contentId
         makeRequest('GET', 'https://tse-summit.firebaseio.com/content.json?orderBy=%22$key%22&equalTo=%22'+ request.media.contentId + '%22')
