@@ -86,6 +86,11 @@ playerManager.addEventListener(
       // castDebugLogger.info('EVENT.CORE', event);
 });
 
+const currentShow = new cast.framework.messages.TvShowMediaMetadata();
+currentShow.episode = 15;
+currentShow.seriesTitle = 'The Odyssey';
+currentShow.title = 'Scylla and Charybdis';
+
 // Set verbosity level for custom tags
 castDebugLogger.loggerLevelByTags = {
     'EVENT.CORE': cast.framework.LoggerLevel.DEBUG,
