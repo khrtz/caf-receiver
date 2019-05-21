@@ -80,7 +80,7 @@ castDebugLogger.setEnabled(true);
 castDebugLogger.showDebugLogs(true);
   
 castDebugLogger.info('DEV.LOG', 'current show', new cast.framework.messages.TvShowMediaMetadata());
-// castDebugLogger.info('DEV.LOG', 'uiConfig b', new cast.framework.ui.UiConfig().touchScreenOptimizedApp);
+castDebugLogger.info('DEV.LOG', 'uiConfig', new cast.framework.ui.UiConfig());
 
 playerManager.addEventListener(
   cast.framework.events.category.CORE,
@@ -142,7 +142,15 @@ playerDataBinder.addEventListener(
     // castDebugLogger.info('DEV.LOG', 'browse items', browseItems[0].imageType);
   });
 
+const playbackConfig = new cast.framework.PlaybackConfig();
+
+// Sets the player to start playback as soon as there are five seconds of
+// media contents buffered. Default is 10.
+playbackConfig.autoResumeDuration = 5;
+
 context.start({
-  touchScreenOptimizedApp: true,
-  supportedCommands: cast.framework.messages.Command.ALL_BASIC_MEDIA,
+  playbackConfig: playbackConfig,
+  supportedCommands: cast.framework.messages.Command.ALL_BASIC_MEDIA |
+                     cast.framework.messages.Command.QUEUE_PREV |
+                     cast.framework.messages.Command.QUEUE_NEXT
 });
