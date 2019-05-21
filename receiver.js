@@ -151,6 +151,5 @@ playerDataBinder.addEventListener(
   });
 
 context.start({
-  touchScreenOptimizedApp: true,
-  supportedCommands: cast.framework.messages.Command.ALL_BASIC_MEDIA
+  touchScreenOptimizedApp: true
 });
