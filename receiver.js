@@ -2,7 +2,7 @@ const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
 // playerManager.removeSupportedMediaCommands(cast.framework.messages.Command.SEEK, true);
 // const currentShow = new cast.framework.messages.TvShowMediaMetadata();
-
+cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
 
 function makeRequest (method, url) {
   return new Promise(function (resolve, reject) {
@@ -150,4 +150,7 @@ playerDataBinder.addEventListener(
     // castDebugLogger.info('DEV.LOG', 'browse items', browseItems[0].imageType);
   });
 
-context.start({ touchScreenOptimizedApp: true });
+context.start({
+  touchScreenOptimizedApp: true,
+  supportedCommands: cast.framework.messages.Command.ALL_BASIC_MEDIA
+});
