@@ -80,6 +80,7 @@ castDebugLogger.setEnabled(true);
 castDebugLogger.showDebugLogs(true);
   
 castDebugLogger.info('DEV.LOG', 'current show', new cast.framework.messages.TvShowMediaMetadata());
+castDebugLogger.info('DEV.LOG', 'uiConfig', cast.framework.ui.UiConfig);
 
 playerManager.addEventListener(
   cast.framework.events.category.CORE,
@@ -142,5 +143,6 @@ playerDataBinder.addEventListener(
   });
 
 context.start({
+  touchScreenOptimizedApp: true,
   supportedCommands: cast.framework.messages.Command.ALL_BASIC_MEDIA,
 });
