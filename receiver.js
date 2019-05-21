@@ -141,4 +141,7 @@ playerDataBinder.addEventListener(
     // castDebugLogger.info('DEV.LOG', 'browse items', browseItems[0].imageType);
   });
 
-context.start({ touchScreenOptimizedApp: true });
+context.start({
+  touchScreenOptimizedApp: true,
+  supportedCommands: cast.framework.messages.Command.ALL_BASIC_MEDIA,
+});
