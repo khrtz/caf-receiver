@@ -1,5 +1,5 @@
 cast-media-player {
-  --theme-hue: 100;
+  --theme-hue: 300;
   --progress-color: rgb(0, 255, 0);
   --splash-size: cover;
 }
