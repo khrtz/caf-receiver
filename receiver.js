@@ -62,7 +62,7 @@ playerManager.setMessageInterceptor(
               castDebugLogger.warn('MyAPP.LOG', 'Playable URL: ' + request.media.contentId);
 
 	            // Add metadata
-	            var metadata = new cast.framework.messages.MovieMediaMetadata();
+	            var metadata = new cast.framework.messages.MovieMetadata();
 	            metadata.metadataType = cast.framework.messages.MetadataType.GENERIC;
 	            metadata.title = item.title;
 	            metadata.subtitle = item.author;
