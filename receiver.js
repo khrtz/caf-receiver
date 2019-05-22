@@ -1,6 +1,4 @@
-import { Z_ASCII } from "zlib";
-
-const context = cast.framework.CastReceiverContext.getInstance().setLoggerLevel(cast.framework.LoggerLevel.DEBUG);
+const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
 // playerManager.removeSupportedMediaCommands(cast.framework.messages.Command.SEEK, true);
 // const currentShow = new cast.framework.messages.TvShowMediaMetadata();
@@ -150,8 +148,10 @@ playerDataBinder.addEventListener(
 const playbackConfig = new cast.framework.PlaybackConfig();
 // Sets the player to start playback as soon as there are five seconds of
 // media contents buffered. Default is 10.
-// playerManager.addSupportedMediaCommands(cast.framework.messages.Command.PAUSE);
-// playerManager.addSupportedMediaCommands(cast.framework.messages.Commanad.LIKE);
+playbackConfig.autoResumeDuration = 5;
+
+playerManager.addSupportedMediaCommands(cast.framework.messages.Command.PAUSE);
+playerManager.addSupportedMediaCommands(cast.framework.messages.Commanad.LIKE);
 
 context.start({
   touchScreenOptimizedApp: true,
