@@ -32,7 +32,7 @@ playerManager.setMessageInterceptor(
     request => {
       castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
       
-      request.media.streamType = cast.framework.messages.StreamType.LIVE;
+      // request.media.streamType = cast.framework.messages.StreamType.LIVE;
 
 
       if (request.media && request.media.entity) {
@@ -134,7 +134,7 @@ playerDataBinder.addEventListener(
     if (!e.value) return;
 
     // Clear default buttons and re-assign
-    touchControls.clearDefaultSlotAssignments();
+    // touchControls.clearDefaultSlotAssignments();
     touchControls.assignButton(
       cast.framework.ui.ControlsSlot.SLOT_1,
       cast.framework.ui.ControlsButton.SEEK_BACKWARD_30
@@ -161,5 +161,3 @@ context.start({
                      cast.framework.messages.Command.QUEUE_PREV |
                      cast.framework.messages.Command.QUEUE_NEXT
 });
-
-castDebugLogger.info('DEV.LOG', 'uiConfig 2', new cast.framework.ui.UiConfig());
