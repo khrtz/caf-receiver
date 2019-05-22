@@ -1,4 +1,6 @@
-const context = cast.framework.CastReceiverContext.getInstance();
+import { Z_ASCII } from "zlib";
+
+const context = cast.framework.CastReceiverContext.getInstance().setLoggerLevel(cast.framework.LoggerLevel.DEBUG);
 const playerManager = context.getPlayerManager();
 // playerManager.removeSupportedMediaCommands(cast.framework.messages.Command.SEEK, true);
 // const currentShow = new cast.framework.messages.TvShowMediaMetadata();
