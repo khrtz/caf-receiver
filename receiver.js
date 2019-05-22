@@ -104,6 +104,10 @@ playerDataBinder.addEventListener(
   (e) => {
     if (!e.value) return;
 
+    if (cast.framework.ui.State.LAUNCHING) {
+      castDebugLogger.info('DEV.LOG', 'launching');
+    }
+
     // Clear default buttons and re-assign
     touchControls.clearDefaultSlotAssignments();
     touchControls.assignButton(
