@@ -146,13 +146,10 @@ playerDataBinder.addEventListener(
   });
 
 const playbackConfig = new cast.framework.PlaybackConfig();
-
 // Sets the player to start playback as soon as there are five seconds of
 // media contents buffered. Default is 10.
-playbackConfig.autoResumeDuration = 5;
-
-playerManager.addSupportedMediaCommands(cast.framework.messages.Command.PAUSE);
-playerManager.addSupportedMediaCommands(cast.framework.messages.Command.LIKE);
+// playerManager.addSupportedMediaCommands(cast.framework.messages.Command.PAUSE);
+// playerManager.addSupportedMediaCommands(cast.framework.messages.Commanad.LIKE);
 
 context.start({
   touchScreenOptimizedApp: true,
