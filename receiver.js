@@ -149,6 +149,7 @@ const playbackConfig = new cast.framework.PlaybackConfig();
 playbackConfig.autoResumeDuration = 5;
 
 context.start({
+  touchScreenOptimizedApp: true,
   playbackConfig: playbackConfig,
   supportedCommands: cast.framework.messages.Command.ALL_BASIC_MEDIA |
                      cast.framework.messages.Command.QUEUE_PREV |
