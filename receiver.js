@@ -161,3 +161,5 @@ context.start({
                      cast.framework.messages.Command.QUEUE_PREV |
                      cast.framework.messages.Command.QUEUE_NEXT
 });
+
+castDebugLogger.info('DEV.LOG', 'uiConfig 2', new cast.framework.ui.UiConfig());
