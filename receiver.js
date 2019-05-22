@@ -48,7 +48,7 @@ playerManager.setMessageInterceptor(
         }
 
         // Fetch content repository by requested contentId
-        makeRequest('GET', 'https://tse-summit.firebaseio.com/content.json?orderBy=%22$key%22&equalTo=%22'+ request.media.contentId + '%22')
+        makeRequest('GET', 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4')
           .then(function (data) {
 	          var item = data[request.media.contentId];
 	          if(!item) {
