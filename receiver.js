@@ -39,7 +39,7 @@ playerManager.setMessageInterceptor(
         request.media.contentId = request.media.entity;
       }
 
-      cast.framework.messages.MessageType.SET_CREDENTIALS;
+      // cast.framework.messages.MessageType.SET_CREDENTIALS;
 
       return new Promise((resolve, reject) => {
 
