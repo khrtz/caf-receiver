@@ -28,51 +28,22 @@ function makeRequest (method, url) {
 }
 
 playerManager.setMessageInterceptor(
-    cast.framework.messages.MessageType.LOAD,
-    request => {
-      castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
-      
-      request.media.streamType = cast.framework.messages.StreamType.LIVE;
-
-
-      if (request.media && request.media.entity) {
-        request.media.contentId = request.media.entity;
-      }
-
-      // cast.framework.messages.MessageType.SET_CREDENTIALS;
-
-      return new Promise((resolve, reject) => {
-
-        if(request.media.contentType == 'video/mp4') {
-          return resolve(request);
-        }
-
-        // Fetch content repository by requested contentId
-        makeRequest('GET', 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4')
-          .then(function (data) {
-	          var item = data[request.media.contentId];
-	          if(!item) {
-	            // Content could not be found in repository
-              castDebugLogger.error('MyAPP.LOG', 'Content not found');
-	            reject();
-	          } else {
-	            // Adjusting request to make requested content playable
-	            request.media.contentId = item.stream.hls;
-	            request.media.contentType = 'application/x-mpegurl';
-              castDebugLogger.warn('MyAPP.LOG', 'Playable URL: ' + request.media.contentId);
-
-	            // Add metadata
-	            var metadata = new cast.framework.messages.MovieMediaMetadata();
-	            metadata.metadataType = cast.framework.messages.MetadataType.GENERIC;
-	            metadata.title = item.title;
-	            metadata.subtitle = item.author;
-
-              request.media.metadata = metadata;
-	            resolve(request);
-	          }
-        });
-      });
-    });
+  cast.framework.messages.MessageType.LOAD, loadRequestData => {
+    if (loadRequestData.media && loadRequestData.media.entity) {
+      return thirdparty
+          .getMediaById(
+              loadRequestData.media.entity, loadRequestData.credentials)
+          .then(media => {
+            if (media) {
+              loadRequestData.media.contentId = media.url;
+              loadRequestData.media.contentType = media.contentType;
+              loadRequestData.media.metadata = media.metadata;
+            }
+            return loadRequestData;
+          });
+    }
+    return loadRequestData;
+  });
 
 /** Debug Logger **/
 const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
