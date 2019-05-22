@@ -151,6 +151,9 @@ const playbackConfig = new cast.framework.PlaybackConfig();
 // media contents buffered. Default is 10.
 playbackConfig.autoResumeDuration = 5;
 
+playerManager.addSupportedMediaCommands(cast.framework.messages.Command.PAUSE);
+playerManager.addSupportedMediaCommands(cast.framework.messages.Command.LIKE);
+
 context.start({
   touchScreenOptimizedApp: true,
   playbackConfig: playbackConfig,
