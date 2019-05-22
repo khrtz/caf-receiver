@@ -63,7 +63,7 @@ playerManager.setMessageInterceptor(
 
 	            // Add metadata
 	            var metadata = new cast.framework.messages.MovieMediaMetadata();
-	            metadata.metadataType = cast.framework.messages.MetadataType.MOVIE;
+	            metadata.metadataType = cast.framework.messages.MetadataType.TV_SHOW;
 	            metadata.title = item.title;
 	            metadata.subtitle = item.author;
 
