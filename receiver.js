@@ -30,9 +30,9 @@ function makeRequest (method, url) {
 playerManager.setMessageInterceptor(
     cast.framework.messages.MessageType.LOAD,
     request => {
-      // castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
+      castDebugLogger.info('MyAPP.LOG', 'Intercepting LOAD request');
       
-      // request.media.streamType = cast.framework.messages.StreamType.LIVE;
+      request.media.streamType = cast.framework.messages.StreamType.LIVE;
 
 
       if (request.media && request.media.entity) {
