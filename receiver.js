@@ -134,14 +134,27 @@ playerDataBinder.addEventListener(
     if (!e.value) return;
 
     // Clear default buttons and re-assign
-    // touchControls.clearDefaultSlotAssignments();
-    touchControls.assignButton(
+    touchControls.clearDefaultSlotAssignments(); 
+    // Assign buttons to control slots.
+    controls.assignButton(
       cast.framework.ui.ControlsSlot.SLOT_1,
-      cast.framework.ui.ControlsButton.SEEK_BACKWARD_30
-    );
+      cast.framework.ui.ControlsButton.QUEUE_PREV
+    )
+    controls.assignButton(
+      cast.framework.ui.ControlsSlot.SLOT_2,
+      cast.framework.ui.ControlsButton.CAPTIONS
+    )
+    controls.assignButton(
+      cast.framework.ui.ControlsSlot.SLOT_3,
+      cast.framework.ui.ControlsButton.SEEK_FORWARD_15
+    )
+    controls.assignButton(
+      cast.framework.ui.ControlsSlot.SLOT_4,
+      cast.framework.ui.ControlsButton.QUEUE_NEXT
+    )
 
     // Media browse
-    touchControls.setBrowseContent(browseContent);
+    // touchControls.setBrowseContent(browseContent);
     // castDebugLogger.info('DEV.LOG', 'browse items', browseItems[0].imageType);
   });
 
