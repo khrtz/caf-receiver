@@ -159,6 +159,7 @@ playerDataBinder.addEventListener(
   });
 
 const playbackConfig = new cast.framework.PlaybackConfig();
+const options = new cast.framework.CastReceiverOptions();
 // Sets the player to start playback as soon as there are five seconds of
 // media contents buffered. Default is 10.
 // playerManager.addSupportedMediaCommands(cast.framework.messages.Command.PAUSE);
@@ -169,5 +170,6 @@ context.start({
   playbackConfig: playbackConfig,
   supportedCommands: cast.framework.messages.Command.ALL_BASIC_MEDIA |
                      cast.framework.messages.Command.QUEUE_PREV |
-                     cast.framework.messages.Command.QUEUE_NEXT
+                     cast.framework.messages.Command.QUEUE_NEXT,
+  options: options
 });
