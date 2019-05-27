@@ -1,8 +1,0 @@
-cast-media-player {
-  --theme-hue: 300;
-  --progress-color: rgb(0, 255, 0);
-  --splash-size: cover;
-  --splash-color:rgb(0, 255, 0);
-  /* --break-c olor: rgb(0, 255, 0); */
-  --watermark-color: rgb(0, 255, 0);
-}
