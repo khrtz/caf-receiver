@@ -8,7 +8,7 @@ export class ReceiverManager {
     this._context.setLoggerLevel(cast.framework.LoggerLevel.DEBUG);
     /** for Touch devices **/
     // this._playerData = new cast.framework.ui.PlayerData();
-    // this._playerDataBinder = new cast.framework.ui.PlayerDataBinder(_playerData);
+    // this._playerDataBinder = new cast.framework.ui.PlayerDataBinder(this._playerData);
     // this._touchControls = new cast.framework.ui.Controls.getInstance();
   }
 
@@ -27,9 +27,9 @@ export class ReceiverManager {
     this._castDebugLogger.info('MyApp.LOG', 'Intercepting LOAD request');
     this._reset();
     // Fetch content repository by requested contentId
-    apiClient('GET', 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4')
+    this.apiClient('GET', 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4')
     .then(function (data) {
-      var item = data[request.media.contentId];
+      const item = data[request.media.contentId];
       if(!item) {
         reject();
       } else {
@@ -38,7 +38,7 @@ export class ReceiverManager {
         request.media.contentType = 'application/x-mpegurl';
 
         // Add metadata
-        var metadata = new cast.framework.messages.MediaMetadata();
+        const metadata = new cast.framework.messages.MediaMetadata();
         metadata.metadataType = cast.framework.messages.MetadataType.GENERIC;
         metadata.title = item.title;
         metadata.subtitle = item.author;
@@ -51,7 +51,7 @@ export class ReceiverManager {
 
   apiClient(method, url) {
     return new Promise(function (resolve, reject) {
-      var xhr = new XMLHttpRequest();
+      const xhr = new XMLHttpRequest();
       xhr.open(method, url);
       xhr.onload = function () {
         if (this.status >= 200 && this.status < 300) {
